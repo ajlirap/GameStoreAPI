@@ -1,5 +1,8 @@
 using GameStore.Api.Entities;
 
+
+const string GetGameEndpointName = "GetGame";
+
 List<Game> games = new()
 {
     new Game
@@ -48,6 +51,46 @@ app.MapGet("/games/{id}",
     }
     return Results.Ok(game);
 }
-);
+)
+.WithName(GetGameEndpointName);
+
+app.MapPost("/games", (Game game) =>
+{
+    game.Id = games.Max(g => g.Id) + 1;
+    games.Add(game);
+    return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id }, game);
+});
+
+app.MapPut("/games/{id}", (int id, Game game) =>
+{
+    Game? existingGame = games.Find(g => g.Id == id);
+
+    if (existingGame == null)
+    {
+        return Results.NotFound();
+    }
+
+    existingGame.Name = game.Name;
+    existingGame.Genre = game.Genre;
+    existingGame.Price = game.Price;
+    existingGame.ReleaseDate = game.ReleaseDate;
+    existingGame.ImageUri = game.ImageUri;
+
+    return Results.NoContent();
+});
+
+app.MapDelete("/games/{id}", (int id) =>
+{
+    Game? existingGame = games.Find(g => g.Id == id);
+
+    if (existingGame == null)
+    {
+        return Results.NotFound();
+    }
+
+    games.Remove(existingGame);
+
+    return Results.NoContent();
+});
 
 app.Run();
