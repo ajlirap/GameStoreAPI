@@ -72,7 +72,7 @@ public static class GamesEndpoints
             }
             return Results.NoContent();
         })
-        .RequireAuthorization(Policies.ReadAccess);
+        .RequireAuthorization(Policies.WriteAccess);
         
         return group;
     }
