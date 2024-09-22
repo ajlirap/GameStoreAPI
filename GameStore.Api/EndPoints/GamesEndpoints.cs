@@ -12,26 +12,26 @@ public static class GamesEndpoints
         .MapGroup("/games")
         .WithParameterValidation();
 
-        group.MapGet("/", (IGamesRepository repository) => repository.GetAll());
+        group.MapGet("/", async (IGamesRepository repository) =>
+            (await repository.GetAllAsync()).Select(game => game.AsDto()));
 
-        group.MapGet("/{id}",
-        (IGamesRepository repository, int id) =>
+        group.MapGet("/{id}", async (IGamesRepository repository, int id) =>
         {
-            Game? game = repository.Get(id);
+            Game? game = await repository.GetAsync(id);
             return game is not null ? Results.Ok(game) : Results.NotFound();
         }
         )
         .WithName(GetGameEndpointName);
 
-        group.MapPost("/", (IGamesRepository repository, Game game) =>
+        group.MapPost("/", async (IGamesRepository repository, Game game) =>
         {
-            repository.CreateGame(game);
+            await repository.CreateGameAsync(game);
             return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id }, game);
         });
 
-        group.MapPut("/{id}", (IGamesRepository repository, int id, Game game) =>
+        group.MapPut("/{id}", async (IGamesRepository repository, int id, Game game) =>
         {
-            Game? existingGame = repository.Get(id);
+            Game? existingGame = await repository.GetAsync(id);
 
             if (existingGame == null)
             {
@@ -44,18 +44,18 @@ public static class GamesEndpoints
             existingGame.ReleaseDate = game.ReleaseDate;
             existingGame.ImageUri = game.ImageUri;
 
-            repository.UpdateGame(existingGame);
+            await repository.UpdateGameAsync(existingGame);
 
             return Results.NoContent();
         });
 
-        group.MapDelete("/{id}", (IGamesRepository repository, int id) =>
+        group.MapDelete("/{id}", async (IGamesRepository repository, int id) =>
         {
-            Game? game = repository.Get(id);
+            Game? game = await repository.GetAsync(id);
 
             if (game is not null)
             {
-                repository.DeleteGame(id);
+                await repository.DeleteGameAsync(id);
             }
             return Results.NoContent();
         });

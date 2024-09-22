@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRepositories(builder.Configuration);
 var app = builder.Build();
 
-app.Services.InitializeDb();
+await app.Services.InitializeDbAsync();
 
 app.MapGames();
 app.Run();

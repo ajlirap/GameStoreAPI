@@ -4,9 +4,9 @@ namespace GameStore.Api.Repositories;
 
 public interface IGamesRepository
 {
-    IEnumerable<Game> GetAll();
-    Game? Get(int id);
-    void CreateGame(Game game);
-    void UpdateGame(Game updatedGame);
-    void DeleteGame(int id);
+    Task CreateGameAsync(Game game);
+    Task DeleteGameAsync(int id);
+    Task<Game?> GetAsync(int id);
+    Task<IEnumerable<Game>> GetAllAsync();
+    Task UpdateGameAsync(Game updatedGame);
 }
