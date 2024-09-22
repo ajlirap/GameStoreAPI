@@ -5,14 +5,14 @@ using GameStore.Api.EndPoints;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRepositories(builder.Configuration);
-
 builder.Services.AddAuthentication().AddJwtBearer();
-
 builder.Services.AddGameStoreAuthorization();
+builder.Services.AddHttpLogging();
 
 var app = builder.Build();
 
 await app.Services.InitializeDbAsync();
 
+app.UseHttpLogging();
 app.MapGames();
 app.Run();
