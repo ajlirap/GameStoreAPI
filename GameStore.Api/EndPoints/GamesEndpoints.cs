@@ -1,3 +1,5 @@
+using GameStore.Api.Authorization;
+using GameStore.Api.Dtos;
 using GameStore.Api.Entities;
 using GameStore.Api.Repositories;
 
@@ -21,13 +23,23 @@ public static class GamesEndpoints
             return game is not null ? Results.Ok(game) : Results.NotFound();
         }
         )
-        .WithName(GetGameEndpointName);
+        .WithName(GetGameEndpointName)
+        .RequireAuthorization(Policies.ReadAccess);
 
-        group.MapPost("/", async (IGamesRepository repository, Game game) =>
+        group.MapPost("/", async (IGamesRepository repository, CreateGameDto gameDto) =>
         {
+            Game game = new()
+            {
+                Name = gameDto.Name,
+                Genre = gameDto.Genre,
+                Price = gameDto.Price,
+                ReleaseDate = gameDto.ReleaseDate,
+                ImageUri = gameDto.ImageUri
+            };
             await repository.CreateGameAsync(game);
             return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id }, game);
-        });
+        })
+       .RequireAuthorization(Policies.WriteAccess);
 
         group.MapPut("/{id}", async (IGamesRepository repository, int id, Game game) =>
         {
@@ -47,7 +59,8 @@ public static class GamesEndpoints
             await repository.UpdateGameAsync(existingGame);
 
             return Results.NoContent();
-        });
+        })
+        .RequireAuthorization(Policies.ReadAccess);
 
         group.MapDelete("/{id}", async (IGamesRepository repository, int id) =>
         {
@@ -58,7 +71,9 @@ public static class GamesEndpoints
                 await repository.DeleteGameAsync(id);
             }
             return Results.NoContent();
-        });
+        })
+        .RequireAuthorization(Policies.ReadAccess);
+        
         return group;
     }
 }
