@@ -12,6 +12,8 @@ builder.Services.AddAuthentication().AddJwtBearer();
 builder.Services.AddGameStoreAuthorization();
 builder.Services.AddHttpLogging();
 
+builder.Services.AddApiVersioning();
+
 var app = builder.Build();
 
 app.UseExceptionHandler(exceptionHandlerApp => exceptionHandlerApp.ConfigureExceptionHandler());
