@@ -12,7 +12,7 @@ public static class GamesEndpoints
     {
 
         var group = endpoints.NewVersionedApi()
-                             .MapGroup("/v{version:apiVersion}/games")
+                             .MapGroup("/games")
                              .HasApiVersion(1.0)
                              .HasApiVersion(2.0)
                              .WithParameterValidation();
