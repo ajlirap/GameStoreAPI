@@ -10,7 +10,7 @@ namespace GameStore.Api.EndPoints
     public static class HttpResponseExtensions
     {
         public static void AddPaginationHeaders(
-            this HttpContext response,
+            this HttpResponse response,
             int totalCount,
             int pageSize)
         {
@@ -19,7 +19,10 @@ namespace GameStore.Api.EndPoints
                 totalPages = (int)Math.Ceiling(totalCount/(double)pageSize)
             };
 
-            response.Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(paginationHeader));
+            response.Headers.Append("X-Pagination", JsonSerializer.Serialize(paginationHeader));
+            //response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationHeader));
+            //Use IHeaderDictionary.Append or the indexer to append or set headers. IDictionary.
+            //Add will throw an ArgumentException when attempting to add a duplicate key.ASP0019
         }
     }
 }
