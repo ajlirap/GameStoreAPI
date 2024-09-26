@@ -23,10 +23,12 @@ public static class GamesEndpoints
         HttpContext httpContext) 
          =>
         {
-            var totalCount = await repository.CountAsync();
+            var totalCount = await repository.CountAsync(request.Filter);
             httpContext.Response.AddPaginationHeaders(totalCount, request.PageSize);
 
-            return Results.Ok((await repository.GetAllAsync(request.PageNumber, request.PageSize))
+            return Results.Ok((await repository.GetAllAsync(request.PageNumber, 
+                                                            request.PageSize,
+                                                            request.Filter))
                                                .Select(game => game.AsDtoV1()));
         })
         .MapToApiVersion(1.0);
@@ -51,10 +53,12 @@ public static class GamesEndpoints
         ) 
         =>
         {
-            var totalCount = await repository.CountAsync();
+            var totalCount = await repository.CountAsync(request.Filter);
             httpContext.Response.AddPaginationHeaders(totalCount, request.PageSize);
             return Results.Ok(
-                (await repository.GetAllAsync(request.PageSize, request.PageNumber))
+                (await repository.GetAllAsync(request.PageSize, 
+                                              request.PageNumber,
+                                              request.Filter))
                 .Select(game => game.AsDtoV2()));
         })
         .MapToApiVersion(2.0);

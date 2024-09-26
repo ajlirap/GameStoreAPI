@@ -140,3 +140,8 @@ C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\runtimes
 C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Asp.Versioning.Abstractions.dll
 C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Asp.Versioning.Http.dll
+C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Asp.Versioning.Mvc.dll
+C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Asp.Versioning.Mvc.ApiExplorer.dll
+C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
