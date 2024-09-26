@@ -24,7 +24,7 @@ public static class GamesEndpoints
          =>
         {
             var totalCount = await repository.CountAsync();
-            httpContext.AddPaginationHeaders(totalCount, request.PageSize);
+            httpContext.Response.AddPaginationHeaders(totalCount, request.PageSize);
 
             return Results.Ok((await repository.GetAllAsync(request.PageNumber, request.PageSize))
                                                .Select(game => game.AsDtoV1()));
@@ -52,7 +52,7 @@ public static class GamesEndpoints
         =>
         {
             var totalCount = await repository.CountAsync();
-            httpContext.AddPaginationHeaders(totalCount, request.PageSize);
+            httpContext.Response.AddPaginationHeaders(totalCount, request.PageSize);
             return Results.Ok(
                 (await repository.GetAllAsync(request.PageSize, request.PageNumber))
                 .Select(game => game.AsDtoV2()));
