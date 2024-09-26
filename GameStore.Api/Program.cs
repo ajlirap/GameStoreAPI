@@ -41,7 +41,7 @@ builder.Services.AddSingleton<IImageUploader>(
     new ImageUploader(
         new BlobContainerClient(
             builder.Configuration.GetConnectionString("AzureStorage"),
-            builder.Configuration["AzureBlobStorage:ContainerName"]))
+            "images"))
 );
 
 builder.Logging.AddAzureWebAppDiagnostics();
