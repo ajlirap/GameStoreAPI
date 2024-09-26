@@ -1,5 +1,5 @@
 {
-    "terminal.integrated.fontFamily": "MesloLGL Nerd Font",
-    "appService.defaultWebAppToDeploy": "",
-    "appService.deploySubpath": "."
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "GameStore.Api\\bin\\Release\\net8.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/c9be7cd3-9bfd-4f9c-8ee0-8e4bdddf91a5/resourceGroups/GameStore/providers/Microsoft.Web/sites/gamestoredev"
 }
