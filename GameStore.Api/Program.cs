@@ -19,7 +19,6 @@ builder.Services.AddAuthentication()
                 .AddJwtBearer("Auth0");
                 
 builder.Services.AddGameStoreAuthorization();
-builder.Services.AddHttpLogging();
 
 builder.Services.AddApiVersioning(options =>
 {
