@@ -2,7 +2,7 @@ using GameStore.Api.Entities;
 
 namespace GameStore.Api.Repositories;
 
-public class InMemGamesRepository : IGamesRepository
+public class InMemGamesRepository: IGamesRepository
 {
     private readonly List<Game> games = new()
     {
@@ -35,7 +35,8 @@ public class InMemGamesRepository : IGamesRepository
     }
     };
 
-    public async Task<IEnumerable<Game>> GetAllAsync() => await Task.FromResult(games);
+    public async Task<IEnumerable<Game>> GetAllAsync(int pageNumber, int pageSize) => 
+    await Task.FromResult(games.Skip((pageNumber - 1) * pageSize).Take(pageSize));
 
     public async Task<Game?> GetAsync(int id)
     {
@@ -64,4 +65,6 @@ public class InMemGamesRepository : IGamesRepository
 
         await Task.CompletedTask;
     }
+
+    public async Task<int> CountAsync() => await Task.FromResult(games.Count);
 }

@@ -16,7 +16,8 @@ public static class CorsExtensions
                     ?? throw new InvalidOperationException($"{allowedOriginSetting} is not configured in appsettings.json");
                 corsBuilder.WithOrigins(allowedOrigins)
                     .AllowAnyHeader()
-                    .AllowAnyMethod();
+                    .AllowAnyMethod()
+                    .WithExposedHeaders("X-Pagination");
             });
         });
     }
