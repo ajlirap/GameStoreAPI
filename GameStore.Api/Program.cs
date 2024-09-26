@@ -20,6 +20,8 @@ builder.Services.AddAuthentication()
                 
 builder.Services.AddGameStoreAuthorization();
 
+builder.Services.AddHttpLogging(options => { });
+
 builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new (1.0);
