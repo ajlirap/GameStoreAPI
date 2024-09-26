@@ -45,6 +45,8 @@ builder.Services.AddSingleton<IImageUploader>(
             builder.Configuration["AzureBlobStorage:ContainerName"]))
 );
 
+builder.Logging.AddAzureWebAppDiagnostics();
+
 var app = builder.Build();
 
 app.UseExceptionHandler(exceptionHandlerApp => exceptionHandlerApp.ConfigureExceptionHandler());
