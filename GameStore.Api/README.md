@@ -23,3 +23,10 @@ dotnet user-secrets list
 dotnet ef migrations add InitialCreate --output-dir Data\Migrations
 
 ```
+
+##Settings the Azure Storage connection string to secret manager
+
+```powershell
+$storage_connstring = "[STORAGE CONN STRING HERE]"
+dotnet user-secrets set "ConnectionStrings:AzureStorage" $storage_connstring
+```

@@ -145,3 +145,8 @@ C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Asp.Vers
 C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Azure.Storage.Blobs.dll
+C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\Azure.Storage.Common.dll
+C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\System.ClientModel.dll
+C:\Users\ajlir\source\repos\GameStoreAPI\GameStore.Api\bin\Debug\net9.0\System.IO.Hashing.dll
